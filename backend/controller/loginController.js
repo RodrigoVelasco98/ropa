@@ -52,7 +52,8 @@ const login = (req, res) => {
         if (!usuario) {
             return res.status(400).json({
                 status: 'Failed',
-                mensaje: 'Credenciales incorrectas'
+                mensaje: 'Credenciales incorrectas',
+                success: false
             });
         }
 
@@ -69,7 +70,8 @@ const login = (req, res) => {
                 return res.status(200).json({
                     status: 'Success',
                     mensaje: 'Login exitoso',
-                    usuario: usuario
+                    usuario: usuario,
+                    success: true
                 });
             } else {
                 return res.status(400).json({

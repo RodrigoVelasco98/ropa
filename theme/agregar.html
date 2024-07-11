@@ -48,7 +48,7 @@
 <body id="body">
 
 
-<section class="signin-page account">
+<section class="add-product-page account">
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
@@ -56,25 +56,35 @@
           <a class="logo" href="index.html">
             <img src="images/logo.png" alt="">
           </a>
-          <h2 class="text-center">Welcome Back</h2>
-          <form id="loginForm" class="text-left clearfix" action="#" >
+          <h2 class="text-center">Agregar Producto</h2>
+          <form id="addProductForm" class="text-left clearfix" action="#" enctype="multipart/form-data">
             <div class="form-group">
-              <input type="text" id="usuario" class="form-control" placeholder="Usuario" required>
+              <input type="text" id="nombre" class="form-control" placeholder="Nombre" required>
             </div>
             <div class="form-group">
-              <input type="password" id="password" class="form-control" placeholder="Password" required>
+              <input type="number" id="cantidad" class="form-control" placeholder="Cantidad" required>
+            </div>
+            <div class="form-group">
+              <input type="number" step="0.01" id="precio" class="form-control" placeholder="Precio" required>
+            </div>
+            <div class="form-group">
+              <textarea id="descripcion" class="form-control" placeholder="Descripción" required></textarea>
+            </div>
+            <div class="form-group">
+              <input type="text" id="tipo" class="form-control" placeholder="Tipo" required>
+            </div>
+            <div class="form-group">
+              <input type="file" id="imagen" class="form-control" accept="image/*" required>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-main text-center">Login</button>
+              <button type="submit" class="btn btn-main text-center">Agregar Producto</button>
             </div>
           </form>
-          <p class="mt-20">New in this site ?<a href="signin.html"> Create New Account</a></p>
         </div>
       </div>
     </div>
   </div>
 </section>
-<script src="./js/login.js"></script>
 
     <!-- 
     Essential Scripts
@@ -109,4 +119,5 @@
   </body>
   </html>
 
-
+<!-- Añade el archivo de script aquí -->
+<script src="./js/agregar.js"></script>
