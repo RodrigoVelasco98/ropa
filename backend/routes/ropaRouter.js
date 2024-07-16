@@ -9,10 +9,11 @@ const router = express.Router();
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, 'uploads/')); // Utiliza path.join para asegurar la ruta absoluta
+        cb(null, path.join(__dirname, 'uploads')); 
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname));
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, `${uniqueSuffix}${path.extname(file.originalname)}`); 
     }
 });
 
