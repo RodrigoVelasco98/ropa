@@ -3,18 +3,19 @@ const ropaController = require('../controller/ropaController');
 const usuarioController = require('../controller/loginController');
 const multer = require('multer');
 const path = require('path');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('../cloudinary');
 
 const router = express.Router();
 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, 'uploads')); 
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'ropa',
+        format: async (req, file) => 'png', // soporta promesas y callbacks
+        public_id: (req, file) => file.originalname.split('.')[0],
     },
-    filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, `${uniqueSuffix}${path.extname(file.originalname)}`); 
-    }
 });
 
 const upload = multer({ storage: storage });

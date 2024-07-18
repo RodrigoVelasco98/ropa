@@ -80,22 +80,22 @@ const buscarUno = (req,res) => {
     });
 }
 
-const crear = (req, res) => {
+const crear = async (req, res) => {
     try {
         let parametros = req.body;
 
         // Validar los datos
         ValidarDatos(parametros);
 
-        // Agregar la ruta de la imagen a los parámetros
+        // Agregar la URL de la imagen a los parámetros
         if (req.file) {
-            parametros.imagen = req.file.path;
+            parametros.imagen = req.file.path; // Cloudinary almacena la URL de la imagen en file.path
         }
 
         // Crear el nuevo artículo
         const art = new ropa(parametros);
 
-        art.save()
+        await art.save()
             .then((result) => {
                 return res.status(200).json({
                     status: 'Success',

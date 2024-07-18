@@ -6,7 +6,7 @@
  */
 
 document.addEventListener("DOMContentLoaded", function () {
-    const productsContainer = document.querySelector(".row");
+    const productsContainer = document.querySelector("#product-list");
 
     // Hacer la solicitud a la API
     fetch("http://localhost:3000/ropa")
