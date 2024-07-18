@@ -22,6 +22,7 @@ const upload = multer({ storage: storage });
 
 router.get('/ropa/:numero?', ropaController.consultar);
 router.delete('/ropa/:id', ropaController.borrar);
+router.get('/ropaUnidad/:id', ropaController.buscarUno);
 router.get('/ropa/detalle/:id', ropaController.buscarUno); 
 router.post('/agregar',upload.single('imagen'), ropaController.crear);
 
