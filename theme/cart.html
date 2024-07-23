@@ -9,6 +9,15 @@
 
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="path/to/your/css/styles.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
 
   <!-- Basic Page Needs
   ================================================== -->
@@ -47,8 +56,7 @@
 
 <body id="body">
 
-
-<!-- Start Top Header Bar -->
+    <!-- Start Top Header Bar -->
 <section class="top-header">
 	<div class="container">
 		<div class="row">
@@ -307,8 +315,7 @@
 		</div><!-- / .container -->
 	</nav>
 </section>
-
-<section class="page-header">
+    <section class="page-header">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -324,75 +331,37 @@
 	</div>
 </section>
 
-
-
-<div class="page-wrapper">
-  <div class="cart shopping">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <div class="block">
-            <div class="product-list">
-              <form method="post">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th class="">Item Name</th>
-                      <th class="">Item Price</th>
-                      <th class="">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="">
-                      <td class="">
-                        <div class="product-info">
-                          <img width="80" src="images/shop/cart/cart-1.jpg" alt="" />
-                          <a href="#!">Sunglass</a>
+    <div class="page-wrapper">
+        <div class="cart shopping">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="block">
+                            <div class="product-list">
+                                <form method="post">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="">Item Name</th>
+                                                <th class="">Item Price</th>
+                                                <th class="">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="cart-items">
+                                            <!-- Cart items will be inserted here dynamically -->
+                                        </tbody>
+                                    </table>
+                                    <a href="checkout.html" class="btn btn-main pull-right">Checkout</a>
+                                </form>
+                            </div>
                         </div>
-                      </td>
-                      <td class="">$200.00</td>
-                      <td class="">
-                        <a class="product-remove" href="#!">Remove</a>
-                      </td>
-                    </tr>
-                    <tr class="">
-                      <td class="">
-                        <div class="product-info">
-                          <img width="80" src="images/shop/cart/cart-2.jpg" alt="" />
-                          <a href="#!">Airspace</a>
-                        </div>
-                      </td>
-                      <td class="">$200.00</td>
-                      <td class="">
-                        <a class="product-remove" href="#!">Remove</a>
-                      </td>
-                    </tr>
-                    <tr class="">
-                      <td class="">
-                        <div class="product-info">
-                          <img width="80" src="images/shop/cart/cart-3.jpg" alt="" />
-                          <a href="#!">Bingo</a>
-                        </div>
-                      </td>
-                      <td class="">$200.00</td>
-                      <td class="">
-                        <a class="product-remove" href="#!">Remove</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <a href="checkout.html" class="btn btn-main pull-right">Checkout</a>
-              </form>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
 
-
-<footer class="footer section text-center">
+    <footer class="footer section text-center">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -437,8 +406,7 @@
 		</div>
 	</div>
 </footer>
-
-    <!-- 
+        <!-- 
     Essential Scripts
     =====================================-->
     
@@ -470,3 +438,50 @@
 
   </body>
   </html>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cartItemsContainer = document.getElementById('cart-items');
+
+            function loadCartItems() {
+                const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                cartItemsContainer.innerHTML = '';
+
+                cartItems.forEach(item => {
+                    const cartItem = document.createElement('tr');
+                    cartItem.innerHTML = `
+                        <td class="">
+                            <div class="product-info">
+                                <img width="80" src="${item.imagen}" alt="" />
+                                <a href="#!">${item.nombre}</a>
+                            </div>
+                        </td>
+                        <td class="">$${item.precio}</td>
+                        <td class="">
+                            <a class="product-remove" href="#!" data-id="${item.id}">Remove</a>
+                        </td>
+                    `;
+                    cartItemsContainer.appendChild(cartItem);
+                });
+
+                // Add event listeners for remove buttons
+                cartItemsContainer.querySelectorAll('.product-remove').forEach(button => {
+                    button.addEventListener('click', function (event) {
+                        const productId = event.target.getAttribute('data-id');
+                        removeCartItem(productId);
+                    });
+                });
+            }
+
+            function removeCartItem(productId) {
+                let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                cartItems = cartItems.filter(item => item.id !== productId);
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+                loadCartItems();
+            }
+
+            loadCartItems();
+        });
+    </script>
+</body>
+</html>

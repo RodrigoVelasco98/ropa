@@ -1,10 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
     const productsContainer = document.querySelector("#product-list");
+    const modal = document.getElementById("product-modal");
+
+    if (!productsContainer) {
+        console.error("Products container not found");
+        return;
+    }
+
+    if (!modal) {
+        console.error("Modal element not found");
+        return;
+    }
+
+    console.log("Attempting initialization", new Date());
 
     // Hacer la solicitud a la API
     fetch("http://localhost:3000/ropa")
         .then(response => response.json())
         .then(data => {
+            console.log("Products data fetched:", data);
+
             // Iterar sobre los productos recibidos
             data.articulo.forEach(product => {
                 // Crear elementos HTML para cada producto
@@ -19,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <div class="preview-meta">
                                 <ul>
                                     <li>
-                                        <span data-toggle="modal" data-target="#product-modal">
+                                        <span data-toggle="modal" data-target="#product-modal" data-id="${product._id}">
                                             <i class="tf-ion-ios-search-strong"></i>
                                         </span>
                                     </li>
@@ -27,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                         <a href="#!"><i class="tf-ion-ios-heart"></i></a>
                                     </li>
                                     <li>
-                                        <a href="#!"><i class="tf-ion-android-cart"></i></a>
+                                        <a href="#!"><i class="tf-ion-android-cart" data-id="${product._id}"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -37,39 +52,87 @@ document.addEventListener("DOMContentLoaded", function () {
                             <p class="price">$${product.precio}</p>
                         </div>
                     </div>
-
-                                <div class="modal product-modal fade" id="product-modal">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="tf-ion-close"></i>
-                </button>
-                <div class="modal-dialog " role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-8 col-sm-6 col-xs-12">
-                                    <div class="modal-image">
-                                        <img class="img-responsive" src="${product.imagen}" alt="product-img" />
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12">
-                                    <div class="product-short-details">
-                                        <h2 class="product-title" id="modal-title">${product.nombre}</h2>
-                                        <p class="product-price" id="modal-price">${product.precio}</p>
-                                        <p class="product-short-description" id="modal-description">${product.descripcion}</p>
-                                        <a href="cart.html" class="btn btn-main">Add To Cart</a>
-                                        <a href="product-single.html" class="btn btn-transparent">View Product Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
                 `;
 
                 // Agregar el producto al contenedor
                 productsContainer.appendChild(productItem);
             });
+
+            // Agregar manejador de eventos para los iconos del modal y el carrito
+            productsContainer.addEventListener("click", function (event) {
+                const modalTrigger = event.target.closest("span[data-toggle='modal']");
+                if (modalTrigger) {
+                    const productId = modalTrigger.getAttribute("data-id");
+                    console.log("Modal trigger clicked, product ID:", productId);
+                    if (productId) {
+                        loadProductDetails(productId);
+                    } else {
+                        console.error("Product ID not found");
+                    }
+                }
+
+                const cartTrigger = event.target.closest("i.tf-ion-android-cart");
+                if (cartTrigger) {
+                    const productId = cartTrigger.getAttribute("data-id");
+                    console.log("Add to cart clicked, product ID:", productId);
+                    if (productId) {
+                        addToCart(productId);
+                    } else {
+                        console.error("Product ID not found");
+                    }
+                }
+            });
         })
         .catch(error => console.error("Error fetching products:", error));
+
+    function loadProductDetails(productId) {
+        console.log("Fetching product details for ID:", productId);
+        fetch(`http://localhost:3000/ropaUnidad/${productId}`)
+            .then(response => response.json())
+            .then(product => {
+                console.log("Product details fetched:", product);
+                if (modal) {
+                    const modalImage = modal.querySelector("#modal-image");
+                    const modalTitle = modal.querySelector("#modal-title");
+                    const modalPrice = modal.querySelector("#modal-price");
+                    const modalDescription = modal.querySelector("#modal-description");
+
+                    if (product.articulo) {
+                        if (modalImage) modalImage.src = product.articulo.imagen || "default.jpg";
+                        if (modalTitle) modalTitle.textContent = product.articulo.nombre || "Nombre no disponible";
+                        if (modalPrice) modalPrice.textContent = `$${product.articulo.precio || 0}`;
+                        if (modalDescription) modalDescription.textContent = product.articulo.descripcion || "Descripción no disponible";
+
+                        // Update the "View Product Details" link
+                        const viewDetailsLink = modal.querySelector(".btn-transparent");
+                        if (viewDetailsLink) {
+                            viewDetailsLink.href = `product-single.html?id=${productId}`;
+                        }
+                    } else {
+                        console.error("Product details are missing");
+                    }
+                } else {
+                    console.error("Modal element not found");
+                }
+            })
+            .catch(error => console.error("Error fetching product details:", error));
+    }
+
+    function addToCart(productId) {
+        fetch(`http://localhost:3000/ropaUnidad/${productId}`)
+            .then(response => response.json())
+            .then(product => {
+                const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                const productToAdd = {
+                    id: product.articulo._id,
+                    nombre: product.articulo.nombre,
+                    precio: product.articulo.precio,
+                    imagen: product.articulo.imagen
+                };
+                cartItems.push(productToAdd);
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+                alert("Product added to cart");
+            })
+            .catch(error => console.error("Error adding product to cart:", error));
+    }
 });

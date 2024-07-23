@@ -1,143 +1,137 @@
-@@include('header.htm')
-@@include('blocks/navigation.htm')
-<section class="single-product">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li class="active">Single Product</li>
-                </ol>
-            </div>
-            <div class="col-md-6">
-                <ol class="product-pagination text-right">
-                    <li><a href="blog-left-sidebar.html"><i class="tf-ion-ios-arrow-left"></i> Next </a></li>
-                    <li><a href="blog-left-sidebar.html">Preview <i class="tf-ion-ios-arrow-right"></i></a></li>
-                </ol>
-            </div>
-        </div>
-        <div class="row mt-20" id="product-details-container">
-            <div class="col-md-5">
-                <div class="single-product-slider">
-                    <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
-                        <div class='carousel-outer'>
-                            <!-- me art lab slider -->
-                            <div class='carousel-inner'>
-                                <div class='item active'>
-                                    <img id="product-main-image" src='' alt='' data-zoom-image="" />
-                                </div>
-                            </div>
-                            <!-- sag sol -->
-                            <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
-                                <i class="tf-ion-ios-arrow-left"></i>
-                            </a>
-                            <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
-                                <i class="tf-ion-ios-arrow-right"></i>
-                            </a>
-                        </div>
-                        <!-- thumb -->
-                        <ol class='carousel-indicators mCustomScrollbar meartlab' id="product-thumbnails">
-                            <!-- Thumbnails will be inserted here -->
-                        </ol>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-7">
-                <div class="single-product-details">
-                    <h2 id="product-title">Product Title</h2>
-                    <p class="product-price" id="product-price">$0.00</p>
-                    <p class="product-description mt-20" id="product-description"></p>
-                    <div class="product-quantity">
-                        <span>Quantity:</span>
-                        <div class="product-quantity-slider">
-                            <input id="product-quantity" type="text" value="1" name="product-quantity">
-                        </div>
-                    </div>
-                    <a href="cart.html" class="btn btn-main mt-20">Add To Cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="tabCommon mt-20">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#details" aria-expanded="true">Details</a></li>
-                        <li class=""><a data-toggle="tab" href="#reviews" aria-expanded="false">Reviews (3)</a></li>
-                    </ul>
-                    <div class="tab-content patternbg">
-                        <div id="details" class="tab-pane fade active in">
-                            <h4>Product Description</h4>
-                            <p id="product-long-description">Long Product Description</p>
-                        </div>
-                        <div id="reviews" class="tab-pane fade">
-                            <div class="post-comments">
-                                <ul class="media-list comments-list m-bot-50 clearlist">
-                                    <!-- Reviews will be inserted here -->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-@@include('blocks/related-products.htm')
-@@include('blocks/footer.htm')
-@@include('footer.htm')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="path/to/your/css/styles.css">
+</head>
+<body>
+    @@include('header.htm')
+    @@include('blocks/navigation.htm')
 
-<script>
+    <section class="single-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li class="active">Single Product</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row mt-20" id="product-details-container">
+                <div class="col-md-5">
+                    <div class="single-product-slider">
+                        <div id='carousel-custom' class='carousel slide' data-ride='carousel'>
+                            <div class='carousel-outer'>
+                                <div class='carousel-inner'>
+                                    <div class='item active'>
+                                        <img id="product-main-image" src='' alt='' data-zoom-image="" />
+                                    </div>
+                                </div>
+                                <a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+                                    <i class="tf-ion-ios-arrow-left"></i>
+                                </a>
+                                <a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+                                    <i class="tf-ion-ios-arrow-right"></i>
+                                </a>
+                            </div>
+                            <ol class='carousel-indicators mCustomScrollbar meartlab' id="product-thumbnails">
+                                <!-- Thumbnails will be inserted here -->
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="single-product-details">
+                        <h2 id="product-title">Product Title</h2>
+                        <p class="product-price" id="product-price">$0.00</p>
+                        <p class="product-description mt-20" id="product-description"></p>
+                        <div class="product-quantity">
+                            <span>Quantity:</span>
+                            <div class="product-quantity-slider">
+                                <input id="product-quantity" type="text" value="1" name="product-quantity">
+                            </div>
+                        </div>
+                        <a href="cart.html" class="btn btn-main mt-20">Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @@include('blocks/footer.htm')
+    @@include('footer.htm')
+
+    <script>
     document.addEventListener("DOMContentLoaded", function () {
         const productId = new URLSearchParams(window.location.search).get('id');
+        if (!productId) {
+            console.error("Product ID not found in URL");
+            return;
+        }
 
-        fetch(`http://localhost:3000/ropa/${productId}`)
+        fetch(`http://localhost:3000/ropaUnidad/${productId}`)
             .then(response => response.json())
             .then(product => {
-                // Set main product image
-                document.getElementById('product-main-image').src = product.imagen;
-                document.getElementById('product-main-image').setAttribute('data-zoom-image', product.imagen);
+                if (!product.articulo) {
+                    console.error("Product details not found");
+                    return;
+                }
 
-                // Set thumbnails
-                const thumbnailsContainer = document.getElementById('product-thumbnails');
-                product.imagenes.forEach((image, index) => {
-                    const thumbnail = document.createElement('li');
-                    thumbnail.setAttribute('data-target', '#carousel-custom');
-                    thumbnail.setAttribute('data-slide-to', index.toString());
-                    if (index === 0) {
-                        thumbnail.classList.add('active');
-                    }
-                    thumbnail.innerHTML = `<img src='${image}' alt='' />`;
-                    thumbnailsContainer.appendChild(thumbnail);
-                });
+                // Set main product image
+                document.getElementById('product-main-image').src = product.articulo.imagen;
+                document.getElementById('product-main-image').setAttribute('data-zoom-image', product.articulo.imagen);
 
                 // Set product details
-                document.getElementById('product-title').textContent = product.nombre;
-                document.getElementById('product-price').textContent = `$${product.precio}`;
-                document.getElementById('product-description').textContent = product.descripcion_corta;
-                document.getElementById('product-long-description').textContent = product.descripcion_larga;
+                document.getElementById('product-title').textContent = product.articulo.nombre;
+                document.getElementById('product-price').textContent = `$${product.articulo.precio}`;
+                document.getElementById('product-description').textContent = product.articulo.descripcion;
 
-                // Set reviews (if any)
-                const reviewsContainer = document.querySelector('.comments-list');
-                product.reviews.forEach(review => {
-                    const reviewItem = document.createElement('li');
-                    reviewItem.classList.add('media');
-                    reviewItem.innerHTML = `
-                        <a class="pull-left" href="#!">
-                            <img class="media-object comment-avatar" src="${review.avatar}" alt="" width="50" height="50" />
-                        </a>
-                        <div class="media-body">
-                            <div class="comment-info">
-                                <h4 class="comment-author"><a href="#!">${review.author}</a></h4>
-                                <time datetime="${review.date}">${review.date}</time>
-                                <a class="comment-button" href="#!"><i class="tf-ion-chatbubbles"></i>Reply</a>
-                            </div>
-                            <p>${review.comment}</p>
-                        </div>
-                    `;
-                    reviewsContainer.appendChild(reviewItem);
+                // Optional: Set thumbnails if there are additional images
+                if (product.articulo.imagenes && product.articulo.imagenes.length > 1) {
+                    const thumbnailsContainer = document.getElementById('product-thumbnails');
+                    product.articulo.imagenes.forEach((image, index) => {
+                        const thumbnail = document.createElement('li');
+                        thumbnail.setAttribute('data-target', '#carousel-custom');
+                        thumbnail.setAttribute('data-slide-to', index.toString());
+                        if (index === 0) {
+                            thumbnail.classList.add('active');
+                        }
+                        thumbnail.innerHTML = `<img src='${image}' alt='' />`;
+                        thumbnailsContainer.appendChild(thumbnail);
+                    });
+                }
+
+                // Add event listener to the "Add To Cart" button
+                document.getElementById('add-to-cart').addEventListener('click', function () {
+                    addToCart(product.articulo._id);
                 });
             })
-            .catch(error => console.error("Error fetching product:", error));
+            .catch(error => console.error("Error fetching product details:", error));
     });
+
+    function addToCart(productId) {
+        fetch(`http://localhost:3000/ropaUnidad/${productId}`)
+            .then(response => response.json())
+            .then(product => {
+                const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                const productToAdd = {
+                    id: product.articulo._id,
+                    nombre: product.articulo.nombre,
+                    precio: product.articulo.precio,
+                    imagen: product.articulo.imagen,
+                    cantidad: parseInt(document.getElementById('product-quantity').value, 10) || 1
+                };
+                cartItems.push(productToAdd);
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+                alert("Product added to cart");
+            })
+            .catch(error => console.error("Error adding product to cart:", error));
+    }
 </script>
+
+</body>
+</html>

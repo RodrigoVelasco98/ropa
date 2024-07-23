@@ -1,25 +1,61 @@
-@@include('header.htm')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="path/to/your/css/styles.css">
+</head>
+<body>
+    @@include('header.htm')
 
-@@include('blocks/navigation.htm')
+    @@include('blocks/navigation.htm')
 
-@@include('blocks/page-header.htm', {
-"title": "Shop",
-"pagination": "shop"
-})
+    @@include('blocks/page-header.htm', {
+        "title": "Shop",
+        "pagination": "shop"
+    })
 
+    <section class="products section">
+        <div class="container">
+            <div class="row" id="product-list">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
 
-<section class="products section">
-	<div class="container">
-		<div class="row" id="product-list">
-		</div>
-	</div>
-</section>
+    <!-- Modal -->
+    <div class="modal product-modal fade" id="product-modal">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="tf-ion-close"></i>
+        </button>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-6 col-xs-12">
+                            <div class="modal-image">
+                                <img class="img-responsive" id="modal-image" src="" alt="product-img" />
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="product-short-details">
+                                <h2 class="product-title" id="modal-title"></h2>
+                                <p class="product-price" id="modal-price"></p>
+                                <p class="product-short-description" id="modal-description"></p>
+                                <a href="cart.html" class="btn btn-main">Add To Cart</a>
+                                <a href="product-single.html" class="btn btn-transparent">View Product Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <script src="./js/product.js"></script>
 
-
-
-<script src="./js/product.js"></script>
-
-@@include('blocks/footer.htm')
-
-@@include('footer.htm')
+    @@include('blocks/footer.htm')
+    @@include('footer.htm')
+</body>
+</html>
