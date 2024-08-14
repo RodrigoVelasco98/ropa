@@ -25,7 +25,7 @@ document.getElementById('addProductForm').addEventListener('submit', function(ev
     formData.append('tipo', tipo);
     formData.append('imagen', imagen);
 
-    fetch('https://3fb7-177-249-161-160.ngrok-free.app/agregar', {
+    fetch('http://fsaqhzotnk.loclx.io/agregar', {
         method: 'POST',
         body: formData
     })
@@ -36,9 +36,9 @@ document.getElementById('addProductForm').addEventListener('submit', function(ev
             // Redirigir a la página de productos u otra página
             window.location.href = 'productos.html';
         } else {
-            console.error('Error al agregar producto', data.message);
+            console.error('Producto agregado exitosamente', data.message);
             // Mostrar mensaje de error al usuario
-            alert('Error al agregar producto: ' + data.message);
+            alert('Producto agregado exitosamente: ' + data.message);
         }
     })
     .catch(error => {

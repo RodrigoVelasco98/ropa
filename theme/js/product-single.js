@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const productsContainer = document.querySelector("#product-list");
 
     // Hacer la solicitud a la API
-    fetch("https://3fb7-177-249-161-160.ngrok-free.app/ropa")
+    fetch("http://fsaqhzotnk.loclx.io/ropa")
         .then(response => response.json())
         .then(data => {
             // Iterar sobre los productos recibidos

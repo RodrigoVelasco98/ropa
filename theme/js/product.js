@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Attempting initialization", new Date());
 
     // Hacer la solicitud a la API
-    fetch("https://3fb7-177-249-161-160.ngrok-free.app/ropa")
+    fetch("http://fsaqhzotnk.loclx.io/ropa")
         .then(response => response.json())
         .then(data => {
             console.log("Products data fetched:", data);
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                         </span>
                                     </li>
                                     <li>
-                                        
+                                        <a href="#!"><i class="tf-ion-ios-heart"></i></a>
                                     </li>
                                     <li>
                                         <a href="#!"><i class="tf-ion-android-cart" data-id="${product._id}"></i></a>
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function loadProductDetails(productId) {
         console.log("Fetching product details for ID:", productId);
-        fetch(`https://3fb7-177-249-161-160.ngrok-free.app/ropaUnidad/${productId}`)
+        fetch(`http://fsaqhzotnk.loclx.io/ropaUnidad/${productId}`)
             .then(response => response.json())
             .then(product => {
                 console.log("Product details fetched:", product);
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function addToCart(productId) {
-        fetch(`https://3fb7-177-249-161-160.ngrok-free.app/ropaUnidad/${productId}`)
+        fetch(`http://fsaqhzotnk.loclx.io/ropaUnidad/${productId}`)
             .then(response => response.json())
             .then(product => {
                 const cartItems = JSON.parse(localStorage.getItem('cart')) || [];

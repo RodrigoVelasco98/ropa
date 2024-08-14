@@ -18,7 +18,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         password: password
     };
 
-    fetch('https://3fb7-177-249-161-160.ngrok-free.app/login', {
+    fetch('http://fsaqhzotnk.loclx.io/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

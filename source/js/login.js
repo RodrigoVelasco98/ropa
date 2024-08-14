@@ -11,7 +11,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         password: password
     };
 
-    fetch('http://localhost:3000/login', {
+    fetch('http://fsaqhzotnk.loclx.io/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
