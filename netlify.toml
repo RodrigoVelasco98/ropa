@@ -3,7 +3,7 @@ publish = "theme"
 command = "npm install --force && npm run build"
 
 [[headers]]
-for = "/*" # This defines which paths this specific [[headers]] block will cover.
+for = "/*" # Esto define qué rutas cubrirá este bloque específico de [[headers]].
 
 [headers.values]
 X-Frame-Options = "DENY"
