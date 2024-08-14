@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Attempting initialization", new Date());
 
     // Hacer la solicitud a la API
-    fetch("http://fsaqhzotnk.loclx.io/ropa")
+    fetch("https://8xg749st-3000.usw3.devtunnels.ms/ropa")
         .then(response => response.json())
         .then(data => {
             console.log("Products data fetched:", data);
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function loadProductDetails(productId) {
         console.log("Fetching product details for ID:", productId);
-        fetch(`http://fsaqhzotnk.loclx.io/ropaUnidad/${productId}`)
+        fetch(`https://8xg749st-3000.usw3.devtunnels.ms/ropaUnidad/${productId}`)
             .then(response => response.json())
             .then(product => {
                 console.log("Product details fetched:", product);
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function addToCart(productId) {
-        fetch(`http://fsaqhzotnk.loclx.io/ropaUnidad/${productId}`)
+        fetch(`https://8xg749st-3000.usw3.devtunnels.ms/ropaUnidad/${productId}`)
             .then(response => response.json())
             .then(product => {
                 const cartItems = JSON.parse(localStorage.getItem('cart')) || [];

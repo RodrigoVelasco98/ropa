@@ -18,7 +18,7 @@ document.getElementById('addProductForm').addEventListener('submit', function(ev
     formData.append('tipo', tipo);
     formData.append('imagen', imagen);
 
-    fetch('http://fsaqhzotnk.loclx.io/agregar', {
+    fetch('https://8xg749st-3000.usw3.devtunnels.ms/agregar', {
         method: 'POST',
         body: formData
     })

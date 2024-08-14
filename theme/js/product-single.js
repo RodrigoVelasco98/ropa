@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const productsContainer = document.querySelector("#product-list");
 
     // Hacer la solicitud a la API
-    fetch("http://fsaqhzotnk.loclx.io/ropa")
+    fetch("https://8xg749st-3000.usw3.devtunnels.ms/ropa")
         .then(response => response.json())
         .then(data => {
             // Iterar sobre los productos recibidos

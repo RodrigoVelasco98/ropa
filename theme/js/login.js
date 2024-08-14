@@ -18,7 +18,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         password: password
     };
 
-    fetch('http://fsaqhzotnk.loclx.io/login', {
+    fetch('https://8xg749st-3000.usw3.devtunnels.ms/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
