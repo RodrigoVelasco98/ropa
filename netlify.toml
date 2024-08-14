@@ -1,13 +1,12 @@
 [build]
-publish = "theme"
-command = "npm install --force"
-command = "npm run dev"
+  publish = "theme" # Carpeta donde se encuentran los archivos generados después de la construcción
+  command = "npm install --force && npm run build" # Comando para instalar dependencias y construir el proyecto
 
 [[headers]]
-for = "/*" # Esto define qué rutas cubrirá este bloque específico de [[headers]].
+  for = "/*" # Aplica estos headers a todas las rutas del sitio
 
-[headers.values]
-X-Frame-Options = "DENY"
-X-XSS-Protection = "1; mode=block"
-Referrer-Policy = "same-origin"
-Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+  [headers.values]
+    X-Frame-Options = "DENY" # Previene que tu sitio sea cargado en un frame
+    X-XSS-Protection = "1; mode=block" # Activa la protección contra XSS
+    Referrer-Policy = "same-origin" # Controla la información del referer enviada a otros sitios
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload" # Fuerza el uso de HTTPS
