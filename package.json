@@ -5,6 +5,7 @@
   "author": "Themefisher",
   "license": "MIT",
   "scripts": {
+    "prebuild": "npm install --force",
     "dev": "gulp",
     "build": "gulp build"
   },

@@ -25,7 +25,7 @@ document.getElementById('addProductForm').addEventListener('submit', function(ev
     formData.append('tipo', tipo);
     formData.append('imagen', imagen);
 
-    fetch('http://localhost:3000/agregar', {
+    fetch('https://3fb7-177-249-161-160.ngrok-free.app/agregar', {
         method: 'POST',
         body: formData
     })
