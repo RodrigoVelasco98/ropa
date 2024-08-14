@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                         </span>
                                     </li>
                                     <li>
-                                        <a href="#!"><i class="tf-ion-ios-heart"></i></a>
+                                        
                                     </li>
                                     <li>
                                         <a href="#!"><i class="tf-ion-android-cart" data-id="${product._id}"></i></a>

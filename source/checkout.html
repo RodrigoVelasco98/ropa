@@ -25,7 +25,7 @@
                            <label for="user_post_code">Zip Code</label>
                            <input type="text" class="form-control" id="user_post_code" name="zipcode" value="">
                         </div>
-                        <div class="form-group" >
+                        <div class="form-group">
                            <label for="user_city">City</label>
                            <input type="text" class="form-control" id="user_city" name="city" value="">
                         </div>
@@ -37,52 +37,26 @@
                   </form>
                </div>
                <div class="block">
-                  <h4 class="widget-title">Payment Method</h4>
-                  <p>Credit Cart Details (Secure payment)</p>
-                  <div class="checkout-product-details">
-                     <div class="payment">
-                        <div class="card-details">
-                           <form  class="checkout-form">
-                              <div class="form-group">
-                                 <label for="card-number">Card Number <span class="required">*</span></label>
-                                 <input  id="card-number" class="form-control"   type="tel" placeholder="•••• •••• •••• ••••">
-                              </div>
-                              <div class="form-group half-width padding-right">
-                                 <label for="card-expiry">Expiry (MM/YY) <span class="required">*</span></label>
-                                 <input id="card-expiry" class="form-control" type="tel" placeholder="MM / YY">
-                              </div>
-                              <div class="form-group half-width padding-left">
-                                 <label for="card-cvc">Card Code <span class="required">*</span></label>
-                                 <input id="card-cvc" class="form-control"  type="tel" maxlength="4" placeholder="CVC" >
-                              </div>
-                              <a href="confirmation.html" class="btn btn-main mt-20">Place Order</a >
-                           </form>
-                        </div>
-                     </div>
-                  </div>
+                  <h4 class="widget-title">Payment Instructions</h4>
+                  <p>Para completar tu pago, sigue estos pasos:</p>
+                  <ul>
+                     <li><strong>Cuenta Bancaria:</strong> <br> Banco: [Nombre del Banco] <br> Número de Cuenta: [Número de Cuenta] <br> Tipo de Cuenta: [Tipo de Cuenta] <br> Clabe Interbancaria: [Clabe] <br> <strong>Referencia:</strong> [Referencia]</li>
+                     <li><strong>WhatsApp:</strong> <br> Envía un mensaje al número: [Número de WhatsApp] <br> Adjunta la captura de pantalla de la transferencia y esta pantalla.</li>
+                  </ul>
+                  <p>Una vez que hayas realizado la transferencia y enviado el mensaje de WhatsApp, procesaremos tu pedido. Resiviras la confirmacion por WhatsApp</p>
                </div>
             </div>
             <div class="col-md-4">
                <div class="product-checkout-details">
                   <div class="block">
                      <h4 class="widget-title">Order Summary</h4>
-                     <div class="media product-card">
-                        <a class="pull-left" href="product-single.html">
-                           <img class="media-object" src="images/shop/cart/cart-1.jpg" alt="Image" />
-                        </a>
-                        <div class="media-body">
-                           <h4 class="media-heading"><a href="product-single.html">Ambassador Heritage 1921</a></h4>
-                           <p class="price">1 x $249</p>
-                           <span class="remove" >Remove</span>
-                        </div>
-                     </div>
-                     <div class="discount-code">
-                        <p>Have a discount ? <a data-toggle="modal" data-target="#coupon-modal" href="#!">enter it here</a></p>
+                     <div id="order-summary">
+                        <!-- Aquí se insertarán los productos del carrito -->
                      </div>
                      <ul class="summary-prices">
                         <li>
                            <span>Subtotal:</span>
-                           <span class="price">$190</span>
+                           <span id="subtotal">$0</span>
                         </li>
                         <li>
                            <span>Shipping:</span>
@@ -91,10 +65,7 @@
                      </ul>
                      <div class="summary-total">
                         <span>Total</span>
-                        <span>$250</span>
-                     </div>
-                     <div class="verified-icon">
-                        <img src="images/shop/verified.png">
+                        <span id="total">$0</span>
                      </div>
                   </div>
                </div>
@@ -121,3 +92,44 @@
    
 @@include('blocks/footer.htm')
 @@include('footer.htm')
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const orderSummary = document.getElementById("order-summary");
+    const subtotalElement = document.getElementById("subtotal");
+    const totalElement = document.getElementById("total");
+
+    if (!orderSummary) {
+        console.error("Order summary element not found");
+        return;
+    }
+
+    // Obtener los datos del carrito del localStorage
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    let subtotal = 0;
+
+    // Mostrar los productos del carrito
+    cartItems.forEach(item => {
+        const productItem = document.createElement("div");
+        productItem.classList.add("media", "product-card");
+
+        productItem.innerHTML = `
+            <a class="pull-left" href="product-single.html">
+                <img class="media-object" src="${item.imagen}" alt="Image" />
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading"><a href="product-single.html">${item.nombre}</a></h4>
+                <p class="price">${item.quantity || 1} x $${item.precio}</p>
+                <span class="remove">Remove</span>
+            </div>
+        `;
+        
+        orderSummary.appendChild(productItem);
+        subtotal += item.precio * (item.quantity || 1);
+    });
+
+    // Actualizar el subtotal y el total
+    subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+    totalElement.textContent = `$${subtotal.toFixed(2)}`;  // Asumiendo que el envío es gratuito
+});
+</script>
