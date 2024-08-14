@@ -1,6 +1,7 @@
 [build]
 publish = "theme"
-command = "npm install --force && npm run build"
+command = "npm install --force"
+command = "npm run dev"
 
 [[headers]]
 for = "/*" # Esto define qué rutas cubrirá este bloque específico de [[headers]].
